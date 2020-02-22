@@ -327,7 +327,17 @@ def get_timetable(grade, stream, group, normalize=False):
         normalize: производить номализацию расписания перед выводом
 
     Возвращаемое значение:
-        Преобразованное в dict расписание с сайта (см. normalize_timetable)
+        Преобразованное в dict расписание с сайта 
+        
+        Если normalize=True см. normalize_timetable
+        По умолчанию возвращает структуру: 
+            {0: [{'time': ('9:00', '10:35'), 'subject': 'Математическая статистика 5-51 Газарян В. А.'}, 
+                ...]
+            ...
+            }
+            Первый уровень: <день недели>: <массив предметов>
+            Предметы: {'time': (<Время начала>, <Время окончания>), 
+                       'subject': '<Название предмета, включая номер кабинета и ФИО преподавателя>' }
     """
     soup = get_soup(grade, stream, group)
     return normalize_timetable(parse_week(soup), parse_groupnums(soup)) \
