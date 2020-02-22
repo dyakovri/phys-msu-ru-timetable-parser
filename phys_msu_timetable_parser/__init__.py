@@ -318,16 +318,18 @@ def normalize_timetable(timetable, groups):
     """
     return timetable
 
-def get_timetable(grade, stream, group):
+def get_timetable(grade, stream, group, normalize=False):
     """Возвращает расписание с одной страницы
 
     Аргументы:
         grade, stream, group: курс, поток и номер страницы с расписанием 
         (для 1-2 курсов совпадает с номером группы)
+        normalize: производить номализацию расписания перед выводом
 
     Возвращаемое значение:
         Преобразованное в dict расписание с сайта (см. normalize_timetable)
     """
     soup = get_soup(grade, stream, group)
-    return normalize_timetable(parse_week(soup), parse_groupnums(soup))
+    return normalize_timetable(parse_week(soup), parse_groupnums(soup)) \
+        if normalize else parse_week(soup)
 
