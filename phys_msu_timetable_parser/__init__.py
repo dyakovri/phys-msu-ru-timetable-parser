@@ -70,7 +70,7 @@ def parse_week(soup):
 def parse_groupnums(soup):
     groups = []
     for num_str in soup.select('.tdheader a>b'): 
-        groups.extend(re.findall(r'\d\d\d\w?', str(num_str)))
+        groups.extend(re.findall(r'\d\d\d[MmМм]?', str(num_str)))
         
     return groups
 
