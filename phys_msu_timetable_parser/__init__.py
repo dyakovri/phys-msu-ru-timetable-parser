@@ -15,10 +15,11 @@ def split_weekdays(html_soup):
         next_row = next_row.next_sibling
         if next_row in delimiters: 
             weekday+=1 # Увеличение дня недели при нахождении разделителя дней недели
-            continue
-        if weekday == 7: raise EOFError('Weekday>7??') # Если дней больше семи, то мы где-то сломались
+            if weekday >= 7: raise EOFError('Weekday>7??') # Если дней больше семи, то мы где-то сломались
+            continue   # Разделители не участвуют в расписании
 
-        if next_row.name != 'tr': continue # Пропускаем строки вне тегов
+        # Пропускаем строки вне тегов (например, переносы строк \n)
+        if next_row.name != 'tr': continue
 
         days[weekday].append(next_row)
 
