@@ -96,7 +96,7 @@ def split_subject(subject_str):
     elif len(group) > 1:
         subject_dict['group'] = group
         
-    room = re.findall(r'\d-\d\d|каф', subject_str, re.IGNORECASE)
+    room = re.findall(r'[А-Яа-яЁёA-Za-z0-9]-\d\d|каф|Л.каб.', subject_str, re.IGNORECASE)
     if len(room)==1: subject_dict['room'] = room[0]
     
     name_regexp = r'^(.*[^\.\,]? - )?(.*)'
