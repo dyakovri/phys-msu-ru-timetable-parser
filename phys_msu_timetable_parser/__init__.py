@@ -128,10 +128,10 @@ def split_subject(subject_str):
     
     return subject_dict
 
-def normalize(timetable, groups):
+def normalize_timetable(timetable, groups):
     return timetable
 
 def get_timetable(grade, stream, group):
     soup = get_soup(grade, stream, group)
-    return normalize(parse_week(soup), parse_groupnums(soup))
+    return normalize_timetable(parse_week(soup), parse_groupnums(soup))
 
